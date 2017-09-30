@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="Oficiální stránky PHP komunity">
+    <meta name="keywords" content="PHP, komunita, programování">
+    <meta name="author" content="https://pehapkari.cz">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:image" content="/images/php-square.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="alternate" type="application/rss+xml" title="Péhápkaři.cz Blog RSS" href="/rss.xml">
+
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="/assets/bootstrap/bootstrap.min.css?v=0.6" rel="stylesheet" type="text/css">
+
+    <link href="/assets/css/style.css?v=0.6" rel="stylesheet" type="text/css">
+
+    <link href="/favicon.ico" rel="shortcut icon">
+
+    <title>Adminer pre Redis, Memcache, RabbitMQ</title>
+</head>
+
+    <body>
+<header>
+    <div class="hidden-sm-down">
+        <div class="container-fluid">
+            <a href="/"><img src="/assets/images/logo-header.svg?ver" alt="" height="50"></a>
+
+            <nav class="navbar top-navigation">
+                <a href="/blog/" class="active">
+                    <em class="fa fa-newspaper-o fa-fw"></em>
+                    Blog
+                </a>
+                <a href="/vzdelavej-se/">
+                    <em class="fa fa-graduation-cap fa-fw"></em>
+                    Školení
+                </a>
+                <a href="/mentori/">
+                    <em class="fa fa-handshake-o fa-fw"></em>
+                    Mentoři
+                </a>
+
+                    
+
+                    <a href="https://github.com/pehapkari/pehapkari.cz/edit/master/source/_posts/2016/2016-12-22-adminer-pre-redis-memcache-rabbit.md" class="hidden-sm">
+                        <em class="fa fa-fw fa-pencil"></em>
+                        Edit
+                    </a>
+            </nav>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="row text-center hidden-md-up">
+        <div class="container">
+            <a href="/" class="col-3 col-sm-3">
+                <em class="fa fa-home"></em>
+                <br>
+                Home
+            </a>
+            <a href="/blog/" class="col-3 col-sm-3 active">
+                <em class="fa fa-book fa-fw"></em>
+                <br>
+                Blog
+            </a>
+            <a href="/vzdelavej-se/" class="col-3 col-sm-3">
+                <em class="fa fa-graduation-cap fa-fw"></em>
+                <br>
+                Školení
+            </a>
+            <a href="/mentori/" class="col-3 col-sm-3">
+                <em class="fa fa-handshake-o fa-fw"></em>
+                <br>
+                Mentoři
+            </a>
+        </div>
+    </div>
+</header>
+
+        <div id="article">
+            <div class="container">
+                <h1 class="h2 text-center">Adminer pre Redis, Memcache, RabbitMQ</h1>
+
+                <div class="row text-center">
+                    <div class="col-md-12">
+<div class="metadataLine">
+
+    <p>
+        <em class="fa fa-clock-o fa-fw"></em>
+        2 min
+
+        |
+
+        by <strong>Michal Lulčo</strong>
+
+        &ndash;
+
+        <time datetime="2016-12-Thu">
+            22. 12. 2016
+        </time>
+
+    </p>
+</div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div id="article-content">
+                    <p class="perex">Pred nejakým časom som potreboval vyhľadávať a zoraďovať dáta v Redise. Takže som si k tomu napísal jednoduchý PHP skript. A keď už som ho mal napísaný, chcel som pomôcť aj dalším ľuďom, ktorí by riešili podobný problém ako ja.</p>
+
+                    
+<p>Rozhodol som sa preto, že napíšem rozšírenie do <a href="https://www.adminer.org">Adminera</a>.</p>
+<p>Nevyhovoval mi však úplne štýl, akým je Adminer napísaný. Hlavne <strong>spôsob pridávania nových rozšírení v podobe nových typov systémov je až príliš orientovaný na SQL</strong>. Napr. pri zmene typu systému sa nezmení ani prihlasovací formulár (vždy sú tam len políčka server, username, password a database).</p>
+<p>Rozhodol som sa, že skúsim vytvoriť aplikáciu, <strong>v ktorej by sa na takéto možnosti rozšírenia myslelo hneď od začiatku</strong> (na kopec iných vecí sa určite nemyslelo :) ale tak to chodí).</p>
+<p>A tak vznikla aplikácia, ktorej názov je UniMan (původně <em>Adminer Next Generation</em>, skrátene <em>Adminer NG</em>).</p>
+<h2 id="v-com-je-napisany-a-co-podporuje"><a class="anchor" href="#v-com-je-napisany-a-co-podporuje" aria-hidden="true"><span class="anchor-icon">#</span></a>V čom je napísaný a čo podporuje</h2>
+<p><a href="https://github.com/lulco/uniman">UniMan</a> je napísaná ako jednoduchá <a href="https://nette.org">Nette aplikácia</a> s využitím <a href="http://getbootstrap.com">Twitter Bootstrapu</a>.</p>
+<h3 id="v-sucasnosti-umoznuje-pripojenie-k"><a class="anchor" href="#v-sucasnosti-umoznuje-pripojenie-k" aria-hidden="true"><span class="anchor-icon">#</span></a>V súčasnosti umožňuje pripojenie k</h3>
+<ul>
+<li><a href="https://redis.io">Redis</a></li>
+<li><a href="http://php.net/manual/en/book.memcache.php">Memcache</a></li>
+<li><a href="https://www.rabbitmq.com">RabbitMQ</a></li>
+<li><a href="https://www.mysql.com">MySQL</a></li>
+</ul>
+<p>Pracuje sa na možnosti pripojenia k <a href="https://www.elastic.co/products/elasticsearch">Elasticsearch-u</a> a <a href="https://www.postgresql.org">PostgreSQL</a>.</p>
+<h2 id="ako-vyzera"><a class="anchor" href="#ako-vyzera" aria-hidden="true"><span class="anchor-icon">#</span></a>Ako vyzerá</h2>
+<p>Všetky typy pripojení majú vlastný prihlasovací formulár:</p>
+<div class="text-center">
+    <img src="http://midatech.sk/adminerng/screenshots/login.png" alt="Adminer NG Login"><br><em>Login screen</em>
+</div>
+<p><br></p>
+<p>A vlastné spracovanie požiadaviek. Aktuálna verzia slúži len na vypisovanie, filtrovanie a zoraďovanie dát z jednotlivých systémov:</p>
+<div class="text-center">
+    <img src="http://midatech.sk/adminerng/screenshots/redis_lists.png" alt="Adminer NG Redis lists"><br><em>Výpis položiek pre Redis databázu</em>
+</div>
+<p><br></p>
+<div class="text-center">
+    <img src="http://midatech.sk/adminerng/screenshots/redis_hash_filter.png" alt="Adminer NG Redis hash with filter"><br><em>Filtrovanie kľúčov v Redis Hash-i</em>
+</div>
+<h3 id="v-redise-si-takto-mozete-prezerat"><a class="anchor" href="#v-redise-si-takto-mozete-prezerat" aria-hidden="true"><span class="anchor-icon">#</span></a>V Redise si takto môžete prezerať</h3>
+<ul>
+<li>databázy</li>
+<li>kľúče</li>
+<li>hash-e</li>
+<li>set-y</li>
+</ul>
+<h3 id="pre-memcache-su-to"><a class="anchor" href="#pre-memcache-su-to" aria-hidden="true"><span class="anchor-icon">#</span></a>Pre memcache sú to</h3>
+<ul>
+<li>kľúče a hodnoty</li>
+</ul>
+<h3 id="v-rabbitmq-su-k-dispozicii"><a class="anchor" href="#v-rabbitmq-su-k-dispozicii" aria-hidden="true"><span class="anchor-icon">#</span></a>V RabbitMQ sú k dispozícii</h3>
+<ul>
+<li>virtual hosty</li>
+<li>fronty</li>
+<li>jednotlivé správy v nich</li>
+</ul>
+<h3 id="a-pre-mysql"><a class="anchor" href="#a-pre-mysql" aria-hidden="true"><span class="anchor-icon">#</span></a>A pre MySQL</h3>
+<ul>
+<li>databázy</li>
+<li>tabuľky</li>
+<li>view-y</li>
+<li>jednotlivé záznamy</li>
+</ul>
+<p>Samozrejme, pracuje sa aj na editácii a vytváraní záznamov / tabuliek / databáz atď.</p>
+<h2 id="chces-si-ho-vyskusat"><a class="anchor" href="#chces-si-ho-vyskusat" aria-hidden="true"><span class="anchor-icon">#</span></a>Chceš si ho vyskúšať?</h2>
+<p>Môžete si <strong>stiahnuť aktuálnu verziu</strong> z <a href="https://github.com/lulco/uniman">GitHubu</a> a spustiť <code>sh scripts/init.sh</code>, ktorý za vás spustí <code>composer install</code> a vytvorí priečinky <code>/log</code> a <code>/temp</code> v roote aplikácie.</p>
+<p>Pokiaľ vám niečo bude chýbať (čo je v tejto fáze vývoja viac ako isté), môžete <a href="https://github.com/lulco/uniman/issues">spraviť issue</a> alebo ideálne rovno pull request. Vopred za všetky ďakujem :)</p>
+<p>Ak sa chcete čokoľvek opýtať alebo konštruktívne skritizovať, napíšte do diskusie :)</p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="intermezzo-smaller">
+                <div class="container">
+
+                </div>
+            </div>
+
+            <div class="container">
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//' + "pehapkari" + '.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+            </div>
+
+            <br>
+        </div>
+
+        <script src="/assets/prism/prism.js"></script>
+        <script id="dsq-count-scr" src="https://pehapkari.disqus.com/count.js" async defer></script>
+
+<script>
+    ga=function(){ ga.q.push(arguments) };
+    ga.q=[];
+    ga.l=+new Date;
+    ga('create', "UA-89860072-1", 'auto');
+    ga('send','pageview');
+</script>
+<script async defer src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+    !function(f,b,e,v,n,t,s){ if(f.fbq)return;n=f.fbq=function(){ n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', "201338863559186");
+    fbq('track', 'PageView');
+</script>
+    </body>
+</html>
+
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Adminer pre Redis, Memcache, RabbitMQ">
+    <meta property="og:description" content="Pred nejakým časom som potreboval vyhľadávať a zoraďovať dáta v Redise. Takže som si k tomu napísal jednoduchý PHP skript. A keď už som ho mal napísaný, chcel som pomôcť aj dalším ľuďom, ktorí by riešili podobný problém ako ja.">
+    <meta property="og:url" content="https://pehapkari.cz/blog/2016/12/22/adminer-pre-redis-memcache-rabbit/">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Adminer pre Redis, Memcache, RabbitMQ">
+    <meta name="twitter:description" content="Pred nejakým časom som potreboval vyhľadávať a zoraďovať dáta v Redise. Takže som si k tomu napísal jednoduchý PHP skript. A keď už som ho mal napísaný, chcel som pomôcť aj dalším ľuďom, ktorí by riešili podobný problém ako ja.">
+
+
+    <link href="/assets/prism/prism.css" rel="stylesheet" type="text/css">
+
+

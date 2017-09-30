@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="Oficiální stránky PHP komunity">
+    <meta name="keywords" content="PHP, komunita, programování">
+    <meta name="author" content="https://pehapkari.cz">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:image" content="/images/php-square.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="alternate" type="application/rss+xml" title="Péhápkaři.cz Blog RSS" href="/rss.xml">
+
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="/assets/bootstrap/bootstrap.min.css?v=0.6" rel="stylesheet" type="text/css">
+
+    <link href="/assets/css/style.css?v=0.6" rel="stylesheet" type="text/css">
+
+    <link href="/favicon.ico" rel="shortcut icon">
+
+    <title>Jak funguje Dependency Injection v Symfony a v Nette</title>
+</head>
+
+    <body>
+<header>
+    <div class="hidden-sm-down">
+        <div class="container-fluid">
+            <a href="/"><img src="/assets/images/logo-header.svg?ver" alt="" height="50"></a>
+
+            <nav class="navbar top-navigation">
+                <a href="/blog/" class="active">
+                    <em class="fa fa-newspaper-o fa-fw"></em>
+                    Blog
+                </a>
+                <a href="/vzdelavej-se/">
+                    <em class="fa fa-graduation-cap fa-fw"></em>
+                    Školení
+                </a>
+                <a href="/mentori/">
+                    <em class="fa fa-handshake-o fa-fw"></em>
+                    Mentoři
+                </a>
+
+                    
+
+                    <a href="https://github.com/pehapkari/pehapkari.cz/edit/master/source/_posts/2017/2017-01-15-jak-funguje-dependency-injection-v-symfony-a-v-nette.md" class="hidden-sm">
+                        <em class="fa fa-fw fa-pencil"></em>
+                        Edit
+                    </a>
+            </nav>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="row text-center hidden-md-up">
+        <div class="container">
+            <a href="/" class="col-3 col-sm-3">
+                <em class="fa fa-home"></em>
+                <br>
+                Home
+            </a>
+            <a href="/blog/" class="col-3 col-sm-3 active">
+                <em class="fa fa-book fa-fw"></em>
+                <br>
+                Blog
+            </a>
+            <a href="/vzdelavej-se/" class="col-3 col-sm-3">
+                <em class="fa fa-graduation-cap fa-fw"></em>
+                <br>
+                Školení
+            </a>
+            <a href="/mentori/" class="col-3 col-sm-3">
+                <em class="fa fa-handshake-o fa-fw"></em>
+                <br>
+                Mentoři
+            </a>
+        </div>
+    </div>
+</header>
+
+        <div id="article">
+            <div class="container">
+                <h1 class="h2 text-center">Jak funguje Dependency Injection v Symfony a v Nette</h1>
+
+                <div class="row text-center">
+                    <div class="col-md-12">
+<div class="metadataLine">
+
+    <p>
+        <em class="fa fa-clock-o fa-fw"></em>
+        4 min
+
+        |
+
+        by <strong>Petr Olišar</strong>
+
+        &ndash;
+
+        <time datetime="2017-01-Sun">
+            15. 1. 2017
+        </time>
+
+    </p>
+</div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div id="article-content">
+                    <p class="perex">V tomto článku si ukážeme základy Dependency Injection &ndash; jaký je rozdíl mezi Nette presenterem a Symfony controllerem. A jak přenést trochu chování Nette do Symfony.</p>
+
+                    
+<h2 id="dependency-injection-di-container"><a class="anchor" href="#dependency-injection-di-container" aria-hidden="true"><span class="anchor-icon">#</span></a>Dependency Injection (DI) + Container</h2>
+<p>DI a container už bude asi většina čtenářů znát, takže jen rychlovka pro připomenutí:</p>
+<ol>
+<li>DI slouží k předávání závislostí konstuktorem</li>
+<li>Container je služba, která vytváří a poskytuje objekty</li>
+</ol>
+<p>Spojením DI a containeru získáme tyto výhody:</p>
+<ul>
+<li><strong>Závislosti se kontrolují již při sestavení containeru</strong></li>
+<li><strong>Hned při pohledu na konstruktor je jasné, na čem třída závisí</strong></li>
+<li><strong>Eliminace skrytých závislostí</strong></li>
+</ul>
+<pre><code class="language-php">// Presenter/Controller
+final class ...
+{
+    public function actionDefault()
+    {
+        $this-&gt;myClass-&gt;send();
+    }
+}</code></pre>
+<pre><code class="language-php">// MyClass
+class MyClass
+{
+    public function __construct(Mailer $mailer)
+    {
+        $this-&gt;mailer = $mailer;
+    }
+
+    public function send()
+    {
+        $this-&gt;mailer-&gt;send()
+    }
+}</code></pre>
+<h2 id="jak-to-funguje-v-nette"><a class="anchor" href="#jak-to-funguje-v-nette" aria-hidden="true"><span class="anchor-icon">#</span></a>Jak to funguje v Nette?</h2>
+<p><strong>Presenter je v Nette registrovaný jako služba</strong>. Takže i on je sestavovaný containerem a mohou mu být vloženy závislosti do konstruktoru. Pak by řetězec závislostí <strong>Presenter &gt; MyClass &gt; Mailer</strong> mohl vypadat nějak takhle:</p>
+<pre><code class="language-php">// Presenter
+use Nette\Application\UI\Presenter;
+
+final class TestPresenter Extends Presenter
+{
+    public function __construct(MyClass $myClass)
+    {
+        $this-&gt;myClass = $myClass;
+    }
+
+    public function actionDefault()
+    {
+        $this-&gt;myClass-&gt;send();
+    }
+}</code></pre>
+<pre><code class="language-php">// MyClass
+class MyClass
+{
+    public function __construct(Mailer $mailer)
+    {
+        $this-&gt;mailer = $mailer;
+    }
+
+    public function send()
+    {
+        // Some logic
+        $this-&gt;mailer-&gt;send();
+    }
+}</code></pre>
+<p>Každá třída má svou závislost a nepůjde získat z containeru aniž by svou závislost dostala. Všechny závislosti jsou přehledně vidět v konstruktoru a nikde není žádná skrytá závislost.</p>
+<h3 id="vysledek"><a class="anchor" href="#vysledek" aria-hidden="true"><span class="anchor-icon">#</span></a>Výsledek</h3>
+<ul>
+<li>Závislosti se kontrolují již při sestavení containeru - <strong>ANO</strong></li>
+<li>Hned při pohledu na konstruktor je jasné, na čem třída závisí - <strong>ANO</strong></li>
+<li>Eliminace skrytých závislostí - <strong>ANO</strong></li>
+</ul>
+<h2 id="jak-to-funguje-v-symfony"><a class="anchor" href="#jak-to-funguje-v-symfony" aria-hidden="true"><span class="anchor-icon">#</span></a>Jak to funguje v Symfony</h2>
+<p><strong>Controller v Symfony jako služba registrovaný není</strong>, a tak mu není možné vložit jinou závislost konstruktorem. Místo toho
+existuje traita <code>ContainerAwareTrait</code>, která předává controlleru celý container. Pokud bychom měli stejnou situaci jako v předchozí části, pak by vypadala následovně:</p>
+<pre><code class="language-php">// Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+final class TestController extends Controller
+{
+    public function indexAction()
+    {
+        $this-&gt;myClass = $this-&gt;container-&gt;get('myClass');
+        $this-&gt;myClass-&gt;send();
+    }
+}</code></pre>
+<pre><code class="language-php">// MyClass
+class MyClass
+{
+    public function __construct(Mailer $mailer)
+    {
+        $this-&gt;mailer = $mailer;
+    }
+
+    public function send()
+    {
+        // Some magic
+        $this-&gt;mailer-&gt;send();
+    }
+}</code></pre>
+<p>Základní rozdíl je tento řádek:</p>
+<pre><code class="language-php">$this-&gt;myClass = $this-&gt;container-&gt;get('myClass');</code></pre>
+<p>Na začátku jsme si definovali 3 úkoly, které chceme po spojení DI a containeru. Podívejme se, co jsme splnili:</p>
+<h3 id="vysledek"><a class="anchor" href="#vysledek" aria-hidden="true"><span class="anchor-icon">#</span></a>Výsledek</h3>
+<ul>
+<li>Závislosti se kontrolují již při sestavení containeru - <strong>NE</strong>
+<ul>
+<li>Controller není službou v containeru, takže se jeho závislosti nekontrolují.</li>
+</ul></li>
+<li>Hned při pohledu na konstruktor je jasné, na čem třída závisí - <strong>NE</strong>
+<ul>
+<li>Musíme prohledat celou třídu a najít všechny řádky s <code>$this-&gt;container-&gt;get('whatever');</code> abychom našli všechny závislosti.</li>
+</ul></li>
+<li>Eliminace skrytých závislostí - <strong>NE</strong>
+<ul>
+<li>Existují závislosti na něčem co je potřeba, ale při vytvoření instance to ještě potřeba není.</li>
+</ul></li>
+</ul>
+<h2 id="controller-jako-sluzba"><a class="anchor" href="#controller-jako-sluzba" aria-hidden="true"><span class="anchor-icon">#</span></a>Controller jako služba</h2>
+<p>Naštěstí existuje řešení! Bundle <a href="https://github.com/Symplify/ControllerAutowire">Symplify/ControllerAutowire</a>, který automaticky <strong>registruje controller jako službu do containeru</strong>. Po instalaci se bude controller chovat stejně jako presenter v předchozí ukázce.</p>
+<p>Bude mu možné předat závislost konstruktorem a získáme tím všechny přednosti, které jsme chtěli po spojení DI a containeru. Navíc při použití traity <a href="https://github.com/Symplify/ControllerAutowire#used-to-frameworkbundles-controller-use-helpers-traits">ControllerAwareTrait</a> fungují i všechny pomocné metody z FrameworkBundle.</p>
+<pre><code class="language-php">// Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+final class TestController extends Controller
+{
+    public function __construct(MyClass $myClass)
+    {
+        $this-&gt;myClass = $myClass;
+    }
+
+    public function indexAction()
+    {
+        $this-&gt;myClass-&gt;send();
+    }
+}</code></pre>
+<pre><code class="language-php">// MyClass
+class MyClass
+{
+    public function __construct(Mailer $mailer)
+    {
+        $this-&gt;mailer = $mailer;
+    }
+
+    public function send()
+    {
+        // Some logic
+        $this-&gt;mailer-&gt;send();
+    }
+}</code></pre>
+<h3 id="vysledek"><a class="anchor" href="#vysledek" aria-hidden="true"><span class="anchor-icon">#</span></a>Výsledek</h3>
+<ul>
+<li>Závislosti se kontrolují již při sestavení containeru - <strong>ANO</strong></li>
+<li>Hned při pohledu na konstruktor je jasné, na čem třída závisí - <strong>ANO</strong></li>
+<li>Eliminace skrytých závislostí - <strong>ANO</strong></li>
+</ul>
+<h3 id="zdroje"><a class="anchor" href="#zdroje" aria-hidden="true"><span class="anchor-icon">#</span></a>Zdroje</h3>
+<ul>
+<li><a href="https://doc.nette.org/cs/2.4/dependency-injection">Nette - Dependency injection</a></li>
+<li><a href="http://symfony.com/doc/current/service_container.html">Symfony - Service container</a></li>
+<li><a href="https://github.com/domnikl/DesignPatternsPHP/tree/master/Structural/DependencyInjection">domnikl/DesignPatternsPHP - Dependency Injection</a></li>
+<li><a href="https://github.com/Symplify/ControllerAutowire">Symplify/ControllerAutowire</a></li>
+</ul>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="intermezzo-smaller">
+                <div class="container">
+
+                </div>
+            </div>
+
+            <div class="container">
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//' + "pehapkari" + '.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+            </div>
+
+            <br>
+        </div>
+
+        <script src="/assets/prism/prism.js"></script>
+        <script id="dsq-count-scr" src="https://pehapkari.disqus.com/count.js" async defer></script>
+
+<script>
+    ga=function(){ ga.q.push(arguments) };
+    ga.q=[];
+    ga.l=+new Date;
+    ga('create', "UA-89860072-1", 'auto');
+    ga('send','pageview');
+</script>
+<script async defer src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+    !function(f,b,e,v,n,t,s){ if(f.fbq)return;n=f.fbq=function(){ n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', "201338863559186");
+    fbq('track', 'PageView');
+</script>
+    </body>
+</html>
+
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Jak funguje Dependency Injection v Symfony a v Nette">
+    <meta property="og:description" content="V tomto článku si ukážeme základy Dependency Injection &amp;ndash; jaký je rozdíl mezi Nette presenterem a Symfony controllerem. A jak přenést trochu chování Nette do Symfony.">
+    <meta property="og:url" content="https://pehapkari.cz/blog/2017/01/15/jak-funguje-dependency-injection-v-symfony-a-v-nette/">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Jak funguje Dependency Injection v Symfony a v Nette">
+    <meta name="twitter:description" content="V tomto článku si ukážeme základy Dependency Injection &amp;ndash; jaký je rozdíl mezi Nette presenterem a Symfony controllerem. A jak přenést trochu chování Nette do Symfony.">
+
+
+    <link href="/assets/prism/prism.css" rel="stylesheet" type="text/css">
+
+

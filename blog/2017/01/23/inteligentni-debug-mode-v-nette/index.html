@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="Oficiální stránky PHP komunity">
+    <meta name="keywords" content="PHP, komunita, programování">
+    <meta name="author" content="https://pehapkari.cz">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:image" content="/images/php-square.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="alternate" type="application/rss+xml" title="Péhápkaři.cz Blog RSS" href="/rss.xml">
+
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="/assets/bootstrap/bootstrap.min.css?v=0.6" rel="stylesheet" type="text/css">
+
+    <link href="/assets/css/style.css?v=0.6" rel="stylesheet" type="text/css">
+
+    <link href="/favicon.ico" rel="shortcut icon">
+
+    <title>Inteligentní debug mode v Nette</title>
+</head>
+
+    <body>
+<header>
+    <div class="hidden-sm-down">
+        <div class="container-fluid">
+            <a href="/"><img src="/assets/images/logo-header.svg?ver" alt="" height="50"></a>
+
+            <nav class="navbar top-navigation">
+                <a href="/blog/" class="active">
+                    <em class="fa fa-newspaper-o fa-fw"></em>
+                    Blog
+                </a>
+                <a href="/vzdelavej-se/">
+                    <em class="fa fa-graduation-cap fa-fw"></em>
+                    Školení
+                </a>
+                <a href="/mentori/">
+                    <em class="fa fa-handshake-o fa-fw"></em>
+                    Mentoři
+                </a>
+
+                    
+
+                    <a href="https://github.com/pehapkari/pehapkari.cz/edit/master/source/_posts/2017/2017-01-23-inteligentni-debug-mode-v-nette.md" class="hidden-sm">
+                        <em class="fa fa-fw fa-pencil"></em>
+                        Edit
+                    </a>
+            </nav>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="row text-center hidden-md-up">
+        <div class="container">
+            <a href="/" class="col-3 col-sm-3">
+                <em class="fa fa-home"></em>
+                <br>
+                Home
+            </a>
+            <a href="/blog/" class="col-3 col-sm-3 active">
+                <em class="fa fa-book fa-fw"></em>
+                <br>
+                Blog
+            </a>
+            <a href="/vzdelavej-se/" class="col-3 col-sm-3">
+                <em class="fa fa-graduation-cap fa-fw"></em>
+                <br>
+                Školení
+            </a>
+            <a href="/mentori/" class="col-3 col-sm-3">
+                <em class="fa fa-handshake-o fa-fw"></em>
+                <br>
+                Mentoři
+            </a>
+        </div>
+    </div>
+</header>
+
+        <div id="article">
+            <div class="container">
+                <h1 class="h2 text-center">Inteligentní debug mode v Nette</h1>
+
+                <div class="row text-center">
+                    <div class="col-md-12">
+<div class="metadataLine">
+
+    <p>
+        <em class="fa fa-clock-o fa-fw"></em>
+        2 min
+
+        |
+
+        by <strong>Tomáš Jacík</strong>
+
+        &ndash;
+
+        <time datetime="2017-01-Mon">
+            23. 1. 2017
+        </time>
+
+    </p>
+</div>
+                        <div id="reviewed_by">
+                            <p>Peer-Reviewed by:
+                                    Tomáš Votruba
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div id="article-content">
+                    <p class="perex">Jak se poprat se zapínáním debug módu při vývoji a jeho vypnutím na produkci? A co debug mód v konzoli? Pojďme se podívat, jak to řešit lépe.</p>
+
+                    
+<h2 id="jak-se-to-bezne-delava"><a class="anchor" href="#jak-se-to-bezne-delava" aria-hidden="true"><span class="anchor-icon">#</span></a>Jak se to běžně dělává?</h2>
+<h3 id="1-docasna-uprava-bootstrap-php"><a class="anchor" href="#1-docasna-uprava-bootstrap-php" aria-hidden="true"><span class="anchor-icon">#</span></a>1. Dočasná úprava bootstrap.php</h3>
+<p>Často jsem se setkal, že programátoři při vývoji zapínají debug mód přímo
+v <code>bootstrap.php</code> prostým zavoláním:</p>
+<pre><code class="language-php">$configurator-&gt;setDebugMode(TRUE);</code></pre>
+<p><strong>Výhody:</strong> Je to jistě nejjednodušší řešení a debug mód funguje všude, včetně konzole.</p>
+<p><strong>Nevýhody:</strong> Snadno se omylem commitne zapnutý debug do produkce.</p>
+<h3 id="2-vycet-ip-adres"><a class="anchor" href="#2-vycet-ip-adres" aria-hidden="true"><span class="anchor-icon">#</span></a>2. Výčet IP adres</h3>
+<p>Do metody <code>setDebugMode()</code> jde také předat seznam IP adres, pro které se debug mód zapne:</p>
+<pre><code class="language-php">$configurator-&gt;setDebugMode(['1.1.1.1', '2.2.2.2']);</code></pre>
+<p>Jak ale potom zapnout debug mód pro konzoli? Tam přece IP adresu nemáme. Lze to přidáním hostname
+našeho stroje do seznamu IP:</p>
+<pre><code class="language-php">$configurator-&gt;setDebugMode(['1.1.1.1', '2.2.2.2', 'myhostname']);</code></pre>
+<p><strong>Výhody:</strong> Nenasadíte debug na produkci nechtěným commitem.</p>
+<p><strong>Nevýhody:</strong> Pokud pracujete na více strojích nebo v týmu, tento výčet může snadno narůst a ztratíte
+v něm přehled. Může se také často měnit a tak se stále dokola upravuje kód kvůli debug módu. Nelze
+použít, pokud máte sdílenou IP adresu. Musíte udržovat výčet hostname vývojových strojů, aby fungoval
+debug i v konzoli.</p>
+<h3 id="3-prazdny-vycet"><a class="anchor" href="#3-prazdny-vycet" aria-hidden="true"><span class="anchor-icon">#</span></a>3. Prázdný výčet</h3>
+<p>Debug lze povolit i s prázným výčtem:</p>
+<pre><code class="language-php">$configurator-&gt;setDebugMode([]);</code></pre>
+<p>Nette pak do něj automaticky přidá IP adresy <code>127.0.0.1</code> a <code>::1</code></p>
+<p><strong>Výhody:</strong> Nenasadíte debug na produkci nechtěným commitem.</p>
+<p><strong>Nevýhody:</strong> Musíte mít vývojové prostředí nastaveno tak, že se hostname aplikace vždy přeloží na jednu
+z daných IP.</p>
+<h3 id="4-nastaveni-cokie"><a class="anchor" href="#4-nastaveni-cokie" aria-hidden="true"><span class="anchor-icon">#</span></a>4. Nastavení cokie</h3>
+<p>Debug mód Nette zapne i při přítomnosti určité cookie:</p>
+<pre><code class="language-php">// Nasetování cookie
+setcookie('nette-debug', 'mysecret', strtotime('1 years'), '/', '', '', TRUE);
+
+// Zapnutí debugu podle cookie a IP
+$configurator-&gt;setDebugMode('mysecret@1.1.1.1');</code></pre>
+<p><strong>Výhody:</strong> Lze použít, i když máte sdílenou IP adresu. Lze zapnout debug mód trvale pro vývojový stroj
+a podmíněně na produkci.</p>
+<p><strong>Nevýhody:</strong> Musíte mít v aplikaci zabezpečené místo, které vám cookie nasetuje. Krom sdílené IP stále
+stejné nevýhody jako postup 2.</p>
+<h2 id="pozdravte-promenne-prostredi"><a class="anchor" href="#pozdravte-promenne-prostredi" aria-hidden="true"><span class="anchor-icon">#</span></a>Pozdravte proměnné prostředí</h2>
+<p>Proměnné prostředí, neboli environmental variables jsou definovány operačním systémem. Můžeme si ale také
+přidat vlastní a jimi zapínání debug módu řídit. Jak to udělat? Zapíšeme do <code>bootstrap.php</code> následující kód:</p>
+<pre><code class="language-php">if (getenv('NETTE_DEVEL') === '1') {
+    $configurator-&gt;setDebugMode(TRUE);
+}</code></pre>
+<p>Tím zajistíme, že při přítomnosti proměnné prostředí <code>NETTE_DEVEL</code> a jejím nastavení na hodnotu <code>1</code> se nám
+debug mód zapne vždy. Aby to fungovalo však musíme tuto proměnnou někde nastavit. Jak to udělat se
+liší podle toho, jak máme PHP nainstalované.</p>
+<h3 id="php-jako-fpm"><a class="anchor" href="#php-jako-fpm" aria-hidden="true"><span class="anchor-icon">#</span></a>PHP jako FPM</h3>
+<p>Pro PHP-FPM proměnnou nejlépe nastavíme v konfiguraci poolu. V mém případě mám konfiguraci hlavního poolu
+v souboru <code>/etc/php/7.0/fpm/pool.d/www.conf</code>. Nastavení proměnné pak vypadá takto:</p>
+<pre><code class="language-ini">env[NETTE_DEVEL] = 1</code></pre>
+<p>Po nastavení nezapomeňte PHP-FPM restartovat.</p>
+<h3 id="php-jako-modul-apache"><a class="anchor" href="#php-jako-modul-apache" aria-hidden="true"><span class="anchor-icon">#</span></a>PHP jako modul Apache</h3>
+<p>Pokud máte PHP jako modul webserveru Apache, nejlépe proměnnou nastavíte ve VirtualHostu aplikace:</p>
+<pre><code class="language-bash">&lt;VirtualHost *:80&gt;
+
+    # ...
+
+    SetEnv NETTE_DEVEL 1
+
+    # ...
+
+&lt;/VirtualHost&gt;</code></pre>
+<p>Před restartem Apache si zkontrolujte, zda máte povolen modul <code>mod_env</code>.</p>
+<h4 id="php-z-konzole"><a class="anchor" href="#php-z-konzole" aria-hidden="true"><span class="anchor-icon">#</span></a>PHP z konzole</h4>
+<p>Pokud používáte bash, nejvíce se mi osvědčilo nastavit proměnnou v souboru <code>~/.bashrc</code> takto:</p>
+<pre><code class="language-bash">export NETTE_DEVEL=1</code></pre>
+<p>Nezapomeňte, že se proměnná nastaví až při novém načtení. Buďto tedy zavřete a znovu otevřete shell,
+nebo spusťte příkaz <code>source ~/.bashrc</code>.</p>
+<p>Nyní vám poběží debug mód i při spouštění konzolových příkazů. Navíc jej ale sndno zapnete i na prodkčním
+serveru, pokud potřebujete rychle zjistit, proč nějaký konzolový příkaz neběží:</p>
+<pre><code class="language-bash">$ NETTE_DEVEL=1 php /cesta/k/nette/index.php</code></pre>
+<p>Pro logičtější spouštění konzole si pak v aplikaci vždy vytvořím ve složce <code>bin</code> soubor <code>console</code> a
+nastavím mu práva ke spuštění:</p>
+<pre><code class="language-php">#!/usr/bin/env php
+&lt;?php
+
+$container = require __DIR__ . '/../app/bootstrap.php';
+$container-&gt;getByType(Nette\Application\Application::class)-&gt;run();</code></pre>
+<h3 id="proc-prave-takto"><a class="anchor" href="#proc-prave-takto" aria-hidden="true"><span class="anchor-icon">#</span></a>Proč právě takto?</h3>
+<ul>
+<li>Nemusím hlídat dočasné úpravy v <code>bootstrap.php</code></li>
+<li>Nemusím řešit seznamy IP adres a hostnames, pro které se debug mód zapne</li>
+<li>Na dev stroji mám debug mód vždy zaplý pro všechny své aplikace a to i pro konzoli</li>
+<li>Na ostrém serveru je debug mód vždy vyplý, ale jde jej jednoduše dočasně zapnout bez zásahu do kódu</li>
+<li>Na ostrém serveru mohu jednoduše spuštět konzolové příkazy v debug módu opět bez úprav kódu</li>
+</ul>
+<h3 id="nevyhody"><a class="anchor" href="#nevyhody" aria-hidden="true"><span class="anchor-icon">#</span></a>Nevýhody?</h3>
+<ul>
+<li>Nelze zapnout debug mód na produkci jen pro jediného uživatele webu</li>
+<li>Musíte proměnnou <code>NETTE_DEBUG</code> nastavit v konfiguračních souborech webserveru
+a shellu.</li>
+</ul>
+<p>Tohle jistě není jediný, ani ten nejlepší přístup, jak se s tímto poprat. Já ho však používám již několik
+let a plně mi vyhovuje. Jak to ve svých aplikacích řešíte vy?</p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="intermezzo-smaller">
+                <div class="container">
+
+                </div>
+            </div>
+
+            <div class="container">
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//' + "pehapkari" + '.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+            </div>
+
+            <br>
+        </div>
+
+        <script src="/assets/prism/prism.js"></script>
+        <script id="dsq-count-scr" src="https://pehapkari.disqus.com/count.js" async defer></script>
+
+<script>
+    ga=function(){ ga.q.push(arguments) };
+    ga.q=[];
+    ga.l=+new Date;
+    ga('create', "UA-89860072-1", 'auto');
+    ga('send','pageview');
+</script>
+<script async defer src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+    !function(f,b,e,v,n,t,s){ if(f.fbq)return;n=f.fbq=function(){ n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', "201338863559186");
+    fbq('track', 'PageView');
+</script>
+    </body>
+</html>
+
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Inteligentní debug mode v Nette">
+    <meta property="og:description" content="Jak se poprat se zapínáním debug módu při vývoji a jeho vypnutím na produkci? A co debug mód v konzoli? Pojďme se podívat, jak to řešit lépe.">
+    <meta property="og:url" content="https://pehapkari.cz/blog/2017/01/23/inteligentni-debug-mode-v-nette/">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Inteligentní debug mode v Nette">
+    <meta name="twitter:description" content="Jak se poprat se zapínáním debug módu při vývoji a jeho vypnutím na produkci? A co debug mód v konzoli? Pojďme se podívat, jak to řešit lépe.">
+
+
+    <link href="/assets/prism/prism.css" rel="stylesheet" type="text/css">
+
+

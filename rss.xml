@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+>
+    <channel>
+        <title>Péhápkaři Blog</title>
+        <link>https://pehapkari.cz/blog/</link>
+        <description>Most recent posts published on the Péhápkaři blog</description>
+        <pubDate>Sat, 30 Sep 2017 16:31:12 +0000</pubDate>
+        <atom:link href="https://pehapkari.cz/rss.xml" rel="self" type="application/rss+xml"></atom:link>
+
+                <lastBuildDate>Mon, 11 Sep 2017 00:00:00 +0000</lastBuildDate>
+
+
+            <item>
+                <title><![CDATA[ Arachne/Verifier + Arachne/EntityLoader - Using Entities in Verifier Rules ]]></title>
+                <link>https://pehapkari.cz/blog/2017/09/11/arachne-verifier-plus-arachne-entity-loader-using-entities-in-verifier-rules</link>
+                <description><![CDATA[ This article demonstrates that while Arachne components are mostly independent on each other, their potential raises dramatically when you use them together. Push both Arachne/ParameterValidation and Arachne/SecurityVerification to their limits with Arachne/EntityLoader! ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/09/11/arachne-verifier-plus-arachne-entity-loader-using-entities-in-verifier-rules</guid>
+                <dc:creator><![CDATA[ Jáchym Toušek ]]></dc:creator>
+                <pubDate>Mon, 11 Sep 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/09/11/arachne-verifier-plus-arachne-entity-loader-using-entities-in-verifier-rules#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Arachne/EntityLoader - Object Parameters for Nette/Application ]]></title>
+                <link>https://pehapkari.cz/blog/2017/09/04/arachne-entity-loader-object-parameters-for-nette-application</link>
+                <description><![CDATA[ Ever wanted to get rid of EntityManager::find($id) as the first thing in your every presenter action?
+With Arachne/EntityLoader you can.
+Of course it is not limited to Doctrine, you can easily use it with a different ORM library. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/09/04/arachne-entity-loader-object-parameters-for-nette-application</guid>
+                <dc:creator><![CDATA[ Jáchym Toušek ]]></dc:creator>
+                <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/09/04/arachne-entity-loader-object-parameters-for-nette-application#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Arachne/Verifier - Request Validator for Nette/Application ]]></title>
+                <link>https://pehapkari.cz/blog/2017/08/28/arachne-verifier-request-validator-for-nette-application</link>
+                <description><![CDATA[ The concept behind Arachne/Verifier was originally meant to solve annotations-based authorization for Nette/Application.
+Now after years of development it is no longer limited to neither annotations nor authorization making it a very powerful tool for your security layer. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/08/28/arachne-verifier-request-validator-for-nette-application</guid>
+                <dc:creator><![CDATA[ Jáchym Toušek ]]></dc:creator>
+                <pubDate>Mon, 28 Aug 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/08/28/arachne-verifier-request-validator-for-nette-application#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Arachne/Security - Simplified Authorizator and Fixed ACL Callbacks ]]></title>
+                <link>https://pehapkari.cz/blog/2017/08/21/arachne-security-simplified-authorizator-and-fixed-acl-callbacks</link>
+                <description><![CDATA[ Authorization in Nette/Security has some long-known drawbacks as demonstrated in my 4 years old RFC (Czech only).
+This article will show you how you can solve these problems using the enhanced API provided by Arachne/Security. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/08/21/arachne-security-simplified-authorizator-and-fixed-acl-callbacks</guid>
+                <dc:creator><![CDATA[ Jáchym Toušek ]]></dc:creator>
+                <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/08/21/arachne-security-simplified-authorizator-and-fixed-acl-callbacks#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Arachne/Security - Separate Authentication and Session Refresh ]]></title>
+                <link>https://pehapkari.cz/blog/2017/08/14/arachne-security-separate-authentication-and-session-refresh</link>
+                <description><![CDATA[ In many cases Nette/Security lacks the API needed for certain tasks.
+Experienced Nette users therefore often recommend using some custom solution instead.
+In this article I&#039;ll go over the known problems with user authentication and how Arachne/Security can help you solve them. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/08/14/arachne-security-separate-authentication-and-session-refresh</guid>
+                <dc:creator><![CDATA[ Jáchym Toušek ]]></dc:creator>
+                <pubDate>Mon, 14 Aug 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/08/14/arachne-security-separate-authentication-and-session-refresh#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ The Bulletproof Event Naming For Symfony Event Dispatcher ]]></title>
+                <link>https://pehapkari.cz/blog/2017/07/12/the-bulletproof-event-naming-for-symfony-event-dispatcher</link>
+                <description><![CDATA[ I wrote intro to Symfony\EventDispatcher and how to use it with simple event.
+
+But when it comes to dispatching events, you can choose from 4 different ways. Which one to choose and why?
+Today I will show you pros and cons of them to make it easier for you. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/07/12/the-bulletproof-event-naming-for-symfony-event-dispatcher</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Wed, 12 Jul 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/07/12/the-bulletproof-event-naming-for-symfony-event-dispatcher#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Nenechte si podrazit nohy iterátory v PHP ]]></title>
+                <link>https://pehapkari.cz/blog/2017/06/10/nenechte-si-podrazit-nohy-iteratory-v-php</link>
+                <description><![CDATA[ Iterátory v PHP jsou občas zrádné. V některých kolekcích se chovají neintuitivně. Zjistěte proč a vyhnete se tím hodinám zbytečného hledání chyb. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/06/10/nenechte-si-podrazit-nohy-iteratory-v-php</guid>
+                <dc:creator><![CDATA[ Honza Kuchař ]]></dc:creator>
+                <pubDate>Sat, 10 Jun 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/06/10/nenechte-si-podrazit-nohy-iteratory-v-php#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Best Practice for Symfony Console in Nette ]]></title>
+                <link>https://pehapkari.cz/blog/2017/06/02/best-practice-for-symfony-console-in-nette</link>
+                <description><![CDATA[ If you use Symfony\Console in Nette, you will be probably familiar with php index.php command approach.
+It has been obsolete since Nette 2.3, and we should all migrate to its successor.
+This blog post will show you why and how. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/06/02/best-practice-for-symfony-console-in-nette</guid>
+                <dc:creator><![CDATA[ Filip Procházka ]]></dc:creator>
+                <pubDate>Fri, 02 Jun 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/06/02/best-practice-for-symfony-console-in-nette#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Rozběhnutí Symfony na Wedos multihostingu ]]></title>
+                <link>https://pehapkari.cz/blog/2017/05/01/symfony-a-wedos-multihosting</link>
+                <description><![CDATA[ Spuštění webu postaveném na Symfony na Wedos multihostingu vypadalo na první pohled jako snadná věc. Nakonec jsem se na tom zasekl na 3 dny, než jsem přišel na to, jak hosting správně nastavit.
+Aby se s tím nemusel trápit někdo další, tak jsem se rozhodl sepsat tento článek s návodem a s problémy na které jsem narazil. Finální řešení je nakonec jednoduché. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/05/01/symfony-a-wedos-multihosting</guid>
+                <dc:creator><![CDATA[ Lukáš Vraný ]]></dc:creator>
+                <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/05/01/symfony-a-wedos-multihosting#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Nastavení GitLab CI pro produkční aplikaci ]]></title>
+                <link>https://pehapkari.cz/blog/2017/03/30/nastaveni-gitlab-ci-pro-produkcni-aplikaci</link>
+                <description><![CDATA[ GitLab CI je dnes moderní. Vychází o něm články s krásnými, jednoduchými příklady, jak jej začít používat. Pak ale člověk narazí. Jak se utkat s překážkami a vyjít z toho jako vítěz? ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/03/30/nastaveni-gitlab-ci-pro-produkcni-aplikaci</guid>
+                <dc:creator><![CDATA[ Tomáš Jacík ]]></dc:creator>
+                <pubDate>Thu, 30 Mar 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/03/30/nastaveni-gitlab-ci-pro-produkcni-aplikaci#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Multiple PHP versions, the easy way ]]></title>
+                <link>https://pehapkari.cz/blog/2017/03/27/multiple-php-versions-the-easy-way</link>
+                <description><![CDATA[ Always wanted to try or run your application with a different PHP version without breaking everything else? Why not, there is a way to run multiple versions in parallel! ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/03/27/multiple-php-versions-the-easy-way</guid>
+                <dc:creator><![CDATA[ Michael Moravec ]]></dc:creator>
+                <pubDate>Mon, 27 Mar 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/03/27/multiple-php-versions-the-easy-way#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Live a file templates v PhpStormu ]]></title>
+                <link>https://pehapkari.cz/blog/2017/03/24/sablony-v-phpstormu</link>
+                <description><![CDATA[ Jak si usnadnit život používáním live a file templates v PhpStormu ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/03/24/sablony-v-phpstormu</guid>
+                <dc:creator><![CDATA[ Matěj Račinský ]]></dc:creator>
+                <pubDate>Fri, 24 Mar 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/03/24/sablony-v-phpstormu#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Jak posílat e-maily přes Amazon SES ]]></title>
+                <link>https://pehapkari.cz/blog/2017/03/20/jak-posilat-e-maily-pres-amazon-ses</link>
+                <description><![CDATA[ Posílat emaily přes Amazon SES je snadné a levné. Zkuste to taky. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/03/20/jak-posilat-e-maily-pres-amazon-ses</guid>
+                <dc:creator><![CDATA[ Petr Jirásek ]]></dc:creator>
+                <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/03/20/jak-posilat-e-maily-pres-amazon-ses#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Git - proč se jej učit v příkazové řádce ]]></title>
+                <link>https://pehapkari.cz/blog/2017/03/16/git-in-terminal</link>
+                <description><![CDATA[ Tento článek je určen pro začátečníky, kteří se chystají začít učit verzovací systém Git. Popisuje proč se vyplatí používat Git v příkazové řádce namísto v grafickém prostředí externích SW či IDE. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/03/16/git-in-terminal</guid>
+                <dc:creator><![CDATA[ Václav Makeš ]]></dc:creator>
+                <pubDate>Thu, 16 Mar 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/03/16/git-in-terminal#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ How to add HTTPS to GitHub Pages in 6 Steps ]]></title>
+                <link>https://pehapkari.cz/blog/2017/03/13/how-to-add-https-to-github-pages-in-6-steps</link>
+                <description><![CDATA[ I always loved GitHub Pages, thanks to open-source and free hosting. Last thing that made me feel too oldschool was the plain &amp;quot;http://&amp;quot; protocol. That is usually the main argument why people move from GitHub Pages elsewhere, i.e. their own VPS. What a pity.
+
+Fortunately, thanks for Michal Špaček&#039;s ability to explain complex stuff in a simple way, we solved this over a single weekend. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/03/13/how-to-add-https-to-github-pages-in-6-steps</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 13 Mar 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/03/13/how-to-add-https-to-github-pages-in-6-steps#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Jak snadné je používat CI ]]></title>
+                <link>https://pehapkari.cz/blog/2017/03/08/jak-snadne-je-pouzivat-ci</link>
+                <description><![CDATA[ Nejspíš jste zkratku CI již někde viděli, možná tušíte, co Continuous Integration znamená. Chcete vědět, jak snadno CI používat na vašich projektech? Pak čtěte dále. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/03/08/jak-snadne-je-pouzivat-ci</guid>
+                <dc:creator><![CDATA[ Jaroslav Hranička ]]></dc:creator>
+                <pubDate>Wed, 08 Mar 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/03/08/jak-snadne-je-pouzivat-ci#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ PHP u nás čeká rok expanze ]]></title>
+                <link>https://pehapkari.cz/blog/2017/03/02/php-u-nas-ceka-rok-expanze</link>
+                <description><![CDATA[ Za minulý rok naše php komunita vyrostla jako nikdy předtím. Přestali jsem řešit, kdo má větší framework, začali jsme sdílet online i offline a spojovat se napříč republikou. Mám z toho ohromnou radost!
+
+Dnes se s tebou chci podělit o to, kam jsme zatím došli a jaká velká cesta nás ještě čeká. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/03/02/php-u-nas-ceka-rok-expanze</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Thu, 02 Mar 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/03/02/php-u-nas-ceka-rok-expanze#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Drop RobotLoader and let Composer Deal with Autoloading ]]></title>
+                <link>https://pehapkari.cz/blog/2017/03/02/drop-robot-loader-and-let-composer-deal-with-autoloading</link>
+                <description><![CDATA[ Using 2 tools for one thing, in this case 2 packages to autoload classes, are sign of an architecture smell. Many applications I see contain RobotLoader for historical reasons. I will borrow this from psychology: pathological behavioral patterns tear us down in the present, but were useful in past.
+
+The best way to deal with them is acknowledge their purpose and then, let them go and enjoy the gift of present. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/03/02/drop-robot-loader-and-let-composer-deal-with-autoloading</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Thu, 02 Mar 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/03/02/drop-robot-loader-and-let-composer-deal-with-autoloading#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Kostra testované aplikace ]]></title>
+                <link>https://pehapkari.cz/blog/2017/02/27/kostra-testovane-aplikace</link>
+                <description><![CDATA[ Stále tápete, jak vytvořit základní kostru aplikace, kde je Composer vč. autoloaderu a máte i testy? Podíváme se na to, že to je velmi jednoduché. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/02/27/kostra-testovane-aplikace</guid>
+                <dc:creator><![CDATA[ Jaroslav Hranička ]]></dc:creator>
+                <pubDate>Mon, 27 Feb 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/02/27/kostra-testovane-aplikace#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ How to use Dynamic Constraints with Symfony/Validator ]]></title>
+                <link>https://pehapkari.cz/blog/2017/02/24/symfony-validator-dynamic-constraints</link>
+                <description><![CDATA[ Some edge-cases with Symfony Validator might force you to create a constraint dynamically during the validation. This article will show you how to do it and how to solve error mapping for such constraints. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/02/24/symfony-validator-dynamic-constraints</guid>
+                <dc:creator><![CDATA[ Jáchym Toušek ]]></dc:creator>
+                <pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/02/24/symfony-validator-dynamic-constraints#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ How to use Conditional Constraints with Symfony/Validator ]]></title>
+                <link>https://pehapkari.cz/blog/2017/02/18/symfony-validator-conditional-constraints</link>
+                <description><![CDATA[ In some more complicated cases you need to do some validations only if some condition is met. This article covers the tricks you should use including a new feature in Symfony 3.2. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/02/18/symfony-validator-conditional-constraints</guid>
+                <dc:creator><![CDATA[ Jáchym Toušek ]]></dc:creator>
+                <pubDate>Sat, 18 Feb 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/02/18/symfony-validator-conditional-constraints#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ How to use Comparison Constraints with Symfony/Validator ]]></title>
+                <link>https://pehapkari.cz/blog/2017/02/11/symfony-validator-comparison-constraints</link>
+                <description><![CDATA[ With Symfony/Validator there is no obvious way to implement validations like comparing a value to another property on the same object. There are several articles about this topic already but literally all of them are completely outdated. In this article I&#039;ll cover the correct way to solve this. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/02/11/symfony-validator-comparison-constraints</guid>
+                <dc:creator><![CDATA[ Jáchym Toušek ]]></dc:creator>
+                <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/02/11/symfony-validator-comparison-constraints#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Jak na akceptační testovaní pomocí Codeception ]]></title>
+                <link>https://pehapkari.cz/blog/2017/02/09/jak-na-testovani-pomoci-codeception</link>
+                <description><![CDATA[ Jak automaticky testovat celé stránky a simulovat chování uživatele na webu pomocí Codeception ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/02/09/jak-na-testovani-pomoci-codeception</guid>
+                <dc:creator><![CDATA[ Matěj Račinský ]]></dc:creator>
+                <pubDate>Thu, 09 Feb 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/02/09/jak-na-testovani-pomoci-codeception#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ How to rehash legacy passwords in Symfony ]]></title>
+                <link>https://pehapkari.cz/blog/2017/02/06/how-to-rehash-legacy-passwords-in-symfony</link>
+                <description><![CDATA[ You need to import users from an old project, but but don&#039;t want to bother them with resetting their passwords just because you want to use bcrypt. Fortunately, there is a solution. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/02/06/how-to-rehash-legacy-passwords-in-symfony</guid>
+                <dc:creator><![CDATA[ Ivan Kvasnica ]]></dc:creator>
+                <pubDate>Mon, 06 Feb 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/02/06/how-to-rehash-legacy-passwords-in-symfony#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Konfigurační objekty v Nette ]]></title>
+                <link>https://pehapkari.cz/blog/2017/01/30/konfiguracni-objekty-v-nette</link>
+                <description><![CDATA[ Jak se poprat s předáním konfigurace službě z config.neon? A jak k tomu využít Nette DI? ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/01/30/konfiguracni-objekty-v-nette</guid>
+                <dc:creator><![CDATA[ Tomáš Jacík ]]></dc:creator>
+                <pubDate>Mon, 30 Jan 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/01/30/konfiguracni-objekty-v-nette#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Jak zaregistrovat Nette komponentu jako posluchače událostí ]]></title>
+                <link>https://pehapkari.cz/blog/2017/01/26/jak-zaregistrovat-nette-komponentu-jako-posluchace-udalosti</link>
+                <description><![CDATA[ Dnes si povíme o tom, jak přimět Nette komponenty poslouchat na události, které nám vyvolává aplikace a umožnit jim se podle toho zachovat. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/01/26/jak-zaregistrovat-nette-komponentu-jako-posluchace-udalosti</guid>
+                <dc:creator><![CDATA[ Tomáš Pilař ]]></dc:creator>
+                <pubDate>Thu, 26 Jan 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/01/26/jak-zaregistrovat-nette-komponentu-jako-posluchace-udalosti#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Inteligentní debug mode v Nette ]]></title>
+                <link>https://pehapkari.cz/blog/2017/01/23/inteligentni-debug-mode-v-nette</link>
+                <description><![CDATA[ Jak se poprat se zapínáním debug módu při vývoji a jeho vypnutím na produkci? A co debug mód v konzoli? Pojďme se podívat, jak to řešit lépe. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/01/23/inteligentni-debug-mode-v-nette</guid>
+                <dc:creator><![CDATA[ Tomáš Jacík ]]></dc:creator>
+                <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/01/23/inteligentni-debug-mode-v-nette#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Jak snadno a rychle upravovat soubory ve vendoru? ]]></title>
+                <link>https://pehapkari.cz/blog/2017/01/20/jak-snadno-a-rychle-upravovat-soubory-ve-vendoru</link>
+                <description><![CDATA[ Už ses někdy dostal do situace, kdy jsi potřeboval opravit chybu nějaké závislosti ve složce vendor? Jak takovou úpravu sdílet v týmu s ostatními programátory a jak ji udržet v souboru i po spuštění composeru? V tomto článku se dovíš, jak snadno a elegantně se tento problém dá vyřešit během 1 minuty. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/01/20/jak-snadno-a-rychle-upravovat-soubory-ve-vendoru</guid>
+                <dc:creator><![CDATA[ Tomáš Pilař ]]></dc:creator>
+                <pubDate>Fri, 20 Jan 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/01/20/jak-snadno-a-rychle-upravovat-soubory-ve-vendoru#disqus_thread</comments>
+            </item>
+
+
+
+            <item>
+                <title><![CDATA[ Jak funguje Dependency Injection v Symfony a v Nette ]]></title>
+                <link>https://pehapkari.cz/blog/2017/01/15/jak-funguje-dependency-injection-v-symfony-a-v-nette</link>
+                <description><![CDATA[ V tomto článku si ukážeme základy Dependency Injection &amp;ndash; jaký je rozdíl mezi Nette presenterem a Symfony controllerem. A jak přenést trochu chování Nette do Symfony. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/01/15/jak-funguje-dependency-injection-v-symfony-a-v-nette</guid>
+                <dc:creator><![CDATA[ Petr Olišar ]]></dc:creator>
+                <pubDate>Sun, 15 Jan 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/01/15/jak-funguje-dependency-injection-v-symfony-a-v-nette#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Why articles with code examples should be CI tested ]]></title>
+                <link>https://pehapkari.cz/blog/2017/01/12/why-articles-with-code-examples-should-be-CI-tested</link>
+                <description><![CDATA[ I know many great articles that go right to the point. I use their code examples and they work. But when I recommend these articles to people I mentor, I realize the articles are already 2 years old and their code samples probably do not work any more. From hero to zero. Today I will show you how to keep them alive lot longer with a minimal effort. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/01/12/why-articles-with-code-examples-should-be-CI-tested</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Thu, 12 Jan 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/01/12/why-articles-with-code-examples-should-be-CI-tested#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ 5 témat, po kterých PHP programátoři touží ]]></title>
+                <link>https://pehapkari.cz/blog/2017/01/10/5-temat-po-kterych-php-programatori-touzi</link>
+                <description><![CDATA[ Zajímá české a slovenské programátory spíš intro do Gitu nebo Symfony pro pokročilé? Chtějí spíš týdenní výuku nebo víkendovou? Celý den nebo jen pár hodin? Na tyto a další otázky jsme měli jen subjektivní odpovědi. Chěli jsme vědět &amp;ndash; a tak vznikl dotazník o vzdělávání na míru - na něj nám odpovědlo 76 z vás a dnes se podělíme o jeho výsledky. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/01/10/5-temat-po-kterych-php-programatori-touzi</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/01/10/5-temat-po-kterych-php-programatori-touzi#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Symfony Console from the Scratch ]]></title>
+                <link>https://pehapkari.cz/blog/2017/01/05/symfony-console-from-scratch</link>
+                <description><![CDATA[ Symfony Console is the one package you will probably use to build a PHP CLI app. It&#039;s of one the easiest Symfony components. Why? You only create Application class, add your Command class and you are ready to go. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2017/01/05/symfony-console-from-scratch</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2017/01/05/symfony-console-from-scratch#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Testování PHP kódu ]]></title>
+                <link>https://pehapkari.cz/blog/2016/12/30/testovani-php-kodu</link>
+                <description><![CDATA[ Testování aplikací není vždy tak snadné, jak se na papíře jeví. Svojí zkušeností jsem dospěl k&amp;nbsp;několika zásadám a&amp;nbsp;postupům, které se mi osvědčily a&amp;nbsp;které se tu pokusím sepsat a&amp;nbsp;částečně i&amp;nbsp;zdůvodnit. Pomáhají mi k&amp;nbsp;psaní čítelnějších a&amp;nbsp;udržovatelnějších testů. Za hlavní přínos pak považuji snadnou rozšiřitelnost testů, jejíž potřeba přichází s&amp;nbsp;rozšiřováním fukcionality projektu. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2016/12/30/testovani-php-kodu</guid>
+                <dc:creator><![CDATA[ Petr Hejna ]]></dc:creator>
+                <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2016/12/30/testovani-php-kodu#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Adminer pre Redis, Memcache, RabbitMQ ]]></title>
+                <link>https://pehapkari.cz/blog/2016/12/22/adminer-pre-redis-memcache-rabbit</link>
+                <description><![CDATA[ Pred nejakým časom som potreboval vyhľadávať a zoraďovať dáta v Redise. Takže som si k tomu napísal jednoduchý PHP skript. A keď už som ho mal napísaný, chcel som pomôcť aj dalším ľuďom, ktorí by riešili podobný problém ako ja. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2016/12/22/adminer-pre-redis-memcache-rabbit</guid>
+                <dc:creator><![CDATA[ Michal Lulčo ]]></dc:creator>
+                <pubDate>Thu, 22 Dec 2016 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2016/12/22/adminer-pre-redis-memcache-rabbit#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Jaký byl SymfonyCon Berlín 2016 ]]></title>
+                <link>https://pehapkari.cz/blog/2016/12/09/jaky-byl-symfonycon-berlin-2016</link>
+                <description><![CDATA[ Největší událost v Symfony světě je za námi. Představeny byly služby SensioCloud, nový balíčkovací systém Symfony Flex a mnoho dalšího. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2016/12/09/jaky-byl-symfonycon-berlin-2016</guid>
+                <dc:creator><![CDATA[ Pavel Rozehnal ]]></dc:creator>
+                <pubDate>Fri, 09 Dec 2016 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2016/12/09/jaky-byl-symfonycon-berlin-2016#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Event Dispatcher from the Scratch ]]></title>
+                <link>https://pehapkari.cz/blog/2016/12/05/symfony-event-dispatcher</link>
+                <description><![CDATA[ Today we will look at first Symfony component - Event Dispatcher. Why should you start with it? It gives you flexibility, it is easy to understand and it helps you to write decoupled code. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2016/12/05/symfony-event-dispatcher</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 05 Dec 2016 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2016/12/05/symfony-event-dispatcher#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Chceš psát o PHP? Pošli Pull Request! ]]></title>
+                <link>https://pehapkari.cz/blog/2016/12/01/chces-psat-o-php-posli-pr</link>
+                <description><![CDATA[ Pokud ti v psaní brání to, že nemáš funkční blog, krásný design, velké sociální kruhy pro šíření článků nebo copy-cítění, máme pro tebe řešení - komunitní blog o PHP. Nudnou rutinu nech na nás a v klidu se věnuj psaní. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2016/12/01/chces-psat-o-php-posli-pr</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2016/12/01/chces-psat-o-php-posli-pr#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Podcast Nejen o PHP #3 - Kam kráčí Péhápkaři a jak se můžeš přidat ]]></title>
+                <link>https://pehapkari.cz/blog/2016/11/26/podcast-nejenophp-3-kam-kraci-pehapkari-a-jak-se-muzes-pridat</link>
+                <description><![CDATA[ Komunita stojí na vás, na lidech - vytvořili jste logo, web, soutěžíte a přednášíte a mluvíte o tématech. Jak se můžeš dál zapojit online i offline - to už v dnešním podcastu. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2016/11/26/podcast-nejenophp-3-kam-kraci-pehapkari-a-jak-se-muzes-pridat</guid>
+                <dc:creator><![CDATA[ Honza Černý ]]></dc:creator>
+                <pubDate>Sat, 26 Nov 2016 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2016/11/26/podcast-nejenophp-3-kam-kraci-pehapkari-a-jak-se-muzes-pridat#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Podcast Nejen o PHP #2 - Blíží se hackatony, spojování sil a růst komunity - buď u toho! ]]></title>
+                <link>https://pehapkari.cz/blog/2016/10/03/podcast-nejenophp-2-v-jednote-je-sila</link>
+                <description><![CDATA[ Na podzim se urodilo pár hackatonů, PHP srazů a po půl roce krystalizuje nápad na spojování a růst komunity. Kam směřuje PHP dál a jak nám s tím můžeš pomoct? Poslechni si v dnešním podcastu. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2016/10/03/podcast-nejenophp-2-v-jednote-je-sila</guid>
+                <dc:creator><![CDATA[ Honza Černý ]]></dc:creator>
+                <pubDate>Mon, 03 Oct 2016 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2016/10/03/podcast-nejenophp-2-v-jednote-je-sila#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Symfony komunita roste na PéHáPkaře a otevírá se všem PHP programátorům ]]></title>
+                <link>https://pehapkari.cz/blog/2016/09/26/symfony-komunita-roste-na-pehapkare-a-otevira-se-vsem-php-programatorum</link>
+                <description><![CDATA[ Symfony komunita mění svůj název, jinak vše zůstane stejné jako dosud.
+Říkáš si proč? To se dnes dozvíš. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2016/09/26/symfony-komunita-roste-na-pehapkare-a-otevira-se-vsem-php-programatorum</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 26 Sep 2016 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2016/09/26/symfony-komunita-roste-na-pehapkare-a-otevira-se-vsem-php-programatorum#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Podcast Nejen o PHP #1 - O sebevzdělávání, školení a mentoringu ]]></title>
+                <link>https://pehapkari.cz/blog/2016/08/15/podcast-nejenophp-1-o-sebevzdelavani-skoleni-a-mentoringu</link>
+                <description><![CDATA[ Poslední půlrok u nás vzniká spousta možností, jak se vzdělávat v PHP. A zadarmo.
+Kdo je pořádá? Proč na ně není takový nával? A jak by tomu mohl pomoc mentoring?
+O tom všem se dnes pobavíme. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2016/08/15/podcast-nejenophp-1-o-sebevzdelavani-skoleni-a-mentoringu</guid>
+                <dc:creator><![CDATA[ Honza Černý ]]></dc:creator>
+                <pubDate>Mon, 15 Aug 2016 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2016/08/15/podcast-nejenophp-1-o-sebevzdelavani-skoleni-a-mentoringu#disqus_thread</comments>
+            </item>
+
+
+            <item>
+                <title><![CDATA[ Kolik lidí je potřeba k vytvoření jedné komunity? ]]></title>
+                <link>https://pehapkari.cz/blog/2016/03/03/kolik-lidi-je-potreba-k-vytvoreni-jedne-komunity</link>
+                <description><![CDATA[ CEO České Symfony komunity. Vedoucí, evangelista, ten co dělá tu Symfony komunitu... Tak mi mnozí z vás občas říkají. Já se však pořád nemůžu zbavit pocitu, že za Symfony komunitou, tak jak ji známe v její dnešní podobě, nejsou vidět ty desítky dalších tváří, na kterých to celé stojí. Tváří lidí, kteří k ní přispěli malým či velkým dílem, kteří mě nakopli, a kteří mi pomáhají víc, než si sami vůbec uvědomují. Bez nich by tady totiž dnes nebylo vůbec nic. A proto bych vám o nich dnes rád řekl. ]]></description>
+                <guid isPermaLink="false">https://pehapkari.cz/blog/2016/03/03/kolik-lidi-je-potreba-k-vytvoreni-jedne-komunity</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Thu, 03 Mar 2016 00:00:00 +0000</pubDate>
+                <comments>https://pehapkari.cz/blog/2016/03/03/kolik-lidi-je-potreba-k-vytvoreni-jedne-komunity#disqus_thread</comments>
+            </item>
+    </channel>
+</rss>

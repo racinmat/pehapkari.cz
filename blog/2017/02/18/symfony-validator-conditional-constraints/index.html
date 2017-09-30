@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="Oficiální stránky PHP komunity">
+    <meta name="keywords" content="PHP, komunita, programování">
+    <meta name="author" content="https://pehapkari.cz">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:image" content="/images/php-square.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="alternate" type="application/rss+xml" title="Péhápkaři.cz Blog RSS" href="/rss.xml">
+
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="/assets/bootstrap/bootstrap.min.css?v=0.6" rel="stylesheet" type="text/css">
+
+    <link href="/assets/css/style.css?v=0.6" rel="stylesheet" type="text/css">
+
+    <link href="/favicon.ico" rel="shortcut icon">
+
+    <title>How to use Conditional Constraints with Symfony/Validator</title>
+</head>
+
+    <body>
+<header>
+    <div class="hidden-sm-down">
+        <div class="container-fluid">
+            <a href="/"><img src="/assets/images/logo-header.svg?ver" alt="" height="50"></a>
+
+            <nav class="navbar top-navigation">
+                <a href="/blog/" class="active">
+                    <em class="fa fa-newspaper-o fa-fw"></em>
+                    Blog
+                </a>
+                <a href="/vzdelavej-se/">
+                    <em class="fa fa-graduation-cap fa-fw"></em>
+                    Školení
+                </a>
+                <a href="/mentori/">
+                    <em class="fa fa-handshake-o fa-fw"></em>
+                    Mentoři
+                </a>
+
+                    
+
+                    <a href="https://github.com/pehapkari/pehapkari.cz/edit/master/source/_posts/2017/2017-02-18-symfony-validator-conditional-constraints.md" class="hidden-sm">
+                        <em class="fa fa-fw fa-pencil"></em>
+                        Edit
+                    </a>
+            </nav>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="row text-center hidden-md-up">
+        <div class="container">
+            <a href="/" class="col-3 col-sm-3">
+                <em class="fa fa-home"></em>
+                <br>
+                Home
+            </a>
+            <a href="/blog/" class="col-3 col-sm-3 active">
+                <em class="fa fa-book fa-fw"></em>
+                <br>
+                Blog
+            </a>
+            <a href="/vzdelavej-se/" class="col-3 col-sm-3">
+                <em class="fa fa-graduation-cap fa-fw"></em>
+                <br>
+                Školení
+            </a>
+            <a href="/mentori/" class="col-3 col-sm-3">
+                <em class="fa fa-handshake-o fa-fw"></em>
+                <br>
+                Mentoři
+            </a>
+        </div>
+    </div>
+</header>
+
+        <div id="article">
+            <div class="container">
+                <h1 class="h2 text-center">How to use Conditional Constraints with Symfony/Validator</h1>
+
+                <div class="row text-center">
+                    <div class="col-md-12">
+<div class="metadataLine">
+        
+        <p class="success">
+            <strong><em class="fa fa-fw fa-check-square-o"></em>
+                <a href="https://github.com/pehapkari/pehapkari.cz/tree/master/tests/Posts/Year2017/SymfonyValidatorConditionalConstraints">
+                    This post is Tested
+                </a>
+            </strong>
+        </p>
+
+    <p>
+        <em class="fa fa-clock-o fa-fw"></em>
+        4 min
+
+        |
+
+        by <strong>Jáchym Toušek</strong>
+
+        &ndash;
+
+        <time datetime="2017-02-Sat">
+            18. 2. 2017
+        </time>
+
+    </p>
+</div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div id="article-content">
+                    <p class="perex">In some more complicated cases you need to do some validations only if some condition is met. This article covers the tricks you should use including a new feature in Symfony 3.2.</p>
+
+                    
+<h3 id="example-use-case"><a class="anchor" href="#example-use-case" aria-hidden="true"><span class="anchor-icon">#</span></a>Example use case</h3>
+<p>Client can be a person or a company. In a form you need to either fill the comany name or both firstname and lastname.</p>
+<p>The use case is a bit articifial and you might solve this particular situation otherwise. <strong>Conditional validators are often needed in more complex use cases</strong> that I don't want to go into here for simplicity.</p>
+<pre><code class="language-php">use Symfony\Component\Validator\Constraints as Assert;
+
+class Client
+{
+    const TYPE_COMPANY = 1;
+    const TYPE_PERSON = 2;
+
+    /**
+     * @var int
+     * @Assert\NotNull()
+     * @Assert\Choice({ Client::TYPE_COMPANY, CLIENT::TYPE_PERSON })
+     */
+    protected $type;
+
+    /**
+     * @todo Make this nonblank only if $type is TYPE_COMPANY.
+     * @var string
+     * @Assert\NotBlank()
+     */
+    protected $company;
+
+    /**
+     * @todo Make this nonblank if $type is TYPE_PERSON.
+     * @var string
+     */
+    protected $firstname;
+
+    /**
+     * @todo Make this nonblank if $type is TYPE_PERSON.
+     * @var string
+     */
+    protected $firstname;
+
+    // getters and setters
+}</code></pre>
+<h3 id="validation-groups"><a class="anchor" href="#validation-groups" aria-hidden="true"><span class="anchor-icon">#</span></a>Validation groups</h3>
+<p><strong>The solution is to add a validation group to the constraints</strong> and validate only one of them based on the user input.</p>
+<p>Note the groups attribute in each of the NotBlank constraints:</p>
+<pre><code class="language-php">use Symfony\Component\Validator\Constraints as Assert;
+
+class Client
+{
+    const TYPE_COMPANY = 1;
+    const TYPE_PERSON = 2;
+
+    /**
+     * @var int
+     * @Assert\NotNull()
+     * @Assert\Choice({ Client::TYPE_COMPANY, CLIENT::TYPE_PERSON })
+     */
+    protected $type;
+
+    /**
+     * @var string
+     * @Assert\NotBlank(groups = {"company"})
+     */
+    protected $company;
+
+    /**
+     * @var string
+     * @Assert\NotBlank(groups = {"person"})
+     */
+    protected $firstname;
+
+    /**
+     * @var string
+     * @Assert\NotBlank(groups = {"person"})
+     */
+    protected $lastname;
+}</code></pre>
+<h3 id="determining-the-groups-to-be-validated"><a class="anchor" href="#determining-the-groups-to-be-validated" aria-hidden="true"><span class="anchor-icon">#</span></a>Determining the groups to be validated</h3>
+<p>Next you need to determine which group to validate. You can do that manually when calling the validation or you can <strong>use one of the advanced features of Symfony/Validator called <code>GroupSequenceProviderInterface</code></strong>.</p>
+<p>To make the validation truly conditional it's better to let the Client entity determine which groups to validate on it's own. This is done by implementing the <code>getGroupSequence</code> method from the <code>GroupSequenceProviderInterface</code>.</p>
+<pre><code class="language-php">use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\GroupSequenceProviderInterface;
+
+/**
+ * @Assert\GroupSequenceProvider()
+ */
+class Client implements GroupSequenceProviderInterface
+{
+    // same as before
+
+    public function getGroupSequence()
+    {
+        return [
+            // Include the "Client" group to validate the $type property as well.
+            // Note that using the "Default" group here won't work!
+            'Client',
+            // Use either the person or company group based on whether company is filled or not.
+            $this-&gt;type === self::TYPE_PERSON ? 'person' : 'company',
+        ];
+    }
+}</code></pre>
+<p>Now you can validate the client entity without specifying any groups. Symfony/Validator will recognize that it implements the GroupSequenceProviderInterface and will call the getGroupSequence() method to determine the validation groups. <strong>The <code>@Assert\GroupSequenceProvider()</code> annotation is necessary as well!</strong></p>
+<h3 id="improving-the-validation-result"><a class="anchor" href="#improving-the-validation-result" aria-hidden="true"><span class="anchor-icon">#</span></a>Improving the validation result</h3>
+<p>Prior to Symfony 3.2 there was a drawback to this solution. Symfony/Validator runs the groups from a GroupSequence one by one and if one and skips the rest if one fails. It was not possible to get all of the violations at once, just the first group with any failure. With my pull request that was accepted into Symfony 3.2 it is now possible to validate multiple validation groups in each step. If you only use one step you can get all violations at once.</p>
+<pre><code class="language-php">use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\GroupSequenceProviderInterface;
+
+/**
+ * @Assert\GroupSequenceProvider()
+ */
+class Client implements GroupSequenceProviderInterface
+{
+    // same as before
+
+    public function getGroupSequence()
+    {
+        // Return array of the validation steps.
+        return [
+            // If we want to get all violations at once we will return just
+            // one validation step containing an array of the groups to validate.
+            [
+                'Client',
+                $this-&gt;type === self::TYPE_PERSON ? 'person' : 'company',
+            ]
+        ];
+    }
+}</code></pre>
+<p>And that's it! Now Validator will validate the client differently based on the <code>$type</code> property and give you all violations.</p>
+<p><strong>In the end conditional validation is surprisingly easy with Symfony/Validator.</strong> The solution is just a bit hidden and not widely known.</p>
+<h3 id="usage-with-nette-framework"><a class="anchor" href="#usage-with-nette-framework" aria-hidden="true"><span class="anchor-icon">#</span></a>Usage with Nette Framework</h3>
+<p>If you want to use the Symfony/Validator component in your Nette application you will need <a href="https://github.com/Kdyby/Validator">Kdyby/Validator</a>.</p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="intermezzo-smaller">
+                <div class="container">
+
+        <h2>You Might Also Like</h2>
+
+        <ul id="related-posts">
+                <li>
+                    <a href="/blog/2017/02/24/symfony-validator-dynamic-constraints">How to use Dynamic Constraints with Symfony/Validator &raquo;</a>
+                </li>
+                <li>
+                    <a href="/blog/2017/02/11/symfony-validator-comparison-constraints">How to use Comparison Constraints with Symfony/Validator &raquo;</a>
+                </li>
+        </ul>
+                </div>
+            </div>
+
+            <div class="container">
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//' + "pehapkari" + '.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+            </div>
+
+            <br>
+        </div>
+
+        <script src="/assets/prism/prism.js"></script>
+        <script id="dsq-count-scr" src="https://pehapkari.disqus.com/count.js" async defer></script>
+
+<script>
+    ga=function(){ ga.q.push(arguments) };
+    ga.q=[];
+    ga.l=+new Date;
+    ga('create', "UA-89860072-1", 'auto');
+    ga('send','pageview');
+</script>
+<script async defer src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+    !function(f,b,e,v,n,t,s){ if(f.fbq)return;n=f.fbq=function(){ n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', "201338863559186");
+    fbq('track', 'PageView');
+</script>
+    </body>
+</html>
+
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to use Conditional Constraints with Symfony/Validator">
+    <meta property="og:description" content="In some more complicated cases you need to do some validations only if some condition is met. This article covers the tricks you should use including a new feature in Symfony 3.2.">
+    <meta property="og:url" content="https://pehapkari.cz/blog/2017/02/18/symfony-validator-conditional-constraints/">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="How to use Conditional Constraints with Symfony/Validator">
+    <meta name="twitter:description" content="In some more complicated cases you need to do some validations only if some condition is met. This article covers the tricks you should use including a new feature in Symfony 3.2.">
+
+
+    <link href="/assets/prism/prism.css" rel="stylesheet" type="text/css">
+
+
